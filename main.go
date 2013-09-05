@@ -23,7 +23,7 @@ func main() {
 			ShortName: "p",
 			Usage:     "Show your robot preferences",
 			Action: func(c *cli.Context) {
-				robotPrefs()
+				init()
 			},
 		},
 		{
@@ -31,7 +31,7 @@ func main() {
 			ShortName: "e",
 			Usage:     "Edit your robot preferences",
 			Action: func(c *cli.Context) {
-				setRobotPrefs()
+				init()
 			},
 		},
 		{
