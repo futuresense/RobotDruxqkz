@@ -19,6 +19,9 @@ type Robot struct {
 	Name           string
 	Musical_taste  string
 	Startup_phrase string
+	Sleep_time     int32
+	Music_time     int32
+	VIdeo_time     int32
 }
 
 func getRobotPrefs() {
@@ -62,9 +65,32 @@ func checkForEditor() string {
 }
 func robotCycle() {
 	p := fmt.Println
-	sessionLength := time.NewTimer(time.Minute * 5)
+	musicSessionTimer := time.NewTimer(time.Second * 1)
+
 	go func() {
-p("hs")		
-	}
-	//youtubeDlPlaylist := exec.Command(youtube-dl-playlist, ...)
+		p("awe")
+		for i := 0; i < 10; i++ {
+			fmt.Println("awe")
+		}
+	}()
+	<-musicSessionTimer.C
+	videoSessionTimer := time.NewTimer(time.Second * 1)
+
+	go func() {
+		for i := 0; i < 10; i++ {
+			p("cat videos")
+		}
+
+	}()
+	<-videoSessionTimer.C
+	sleepSessionTimer := time.NewTimer(time.Second * 1)
+
+	go func() {
+		for i := 0; i < 10; i++ {
+			p("ZZZZzzzZZ")
+		}
+
+	}()
+	<-sleepSessionTimer.C
+	p("done")
 }
