@@ -10,7 +10,7 @@ import (
 	//	"os"
 	"os/exec"
 )
-
+	var r &Robot = new(Robot)
 var (
 	quirky = Robot{Name: "default", Musical_taste: "rock", Startup_phrase: "I love life"}
 )
@@ -22,10 +22,11 @@ type Robot struct {
 	Sleep_time     int32
 	Music_time     int32
 	VIdeo_time     int32
+	CycleLength    int
 }
 
 func getRobotPrefs() {
-	r := new(Robot)
+
 	filebyte, _ := ioutil.ReadFile("robotpreferences.json")
 	json.Unmarshal(filebyte, &r)
 }
@@ -65,32 +66,17 @@ func checkForEditor() string {
 }
 func robotCycle() {
 	p := fmt.Println
-	musicSessionTimer := time.NewTimer(time.Second * 1)
+	musicSessionTimer := time.NewTimer(r.cycleLength)
 
-	go func() {
-		p("awe")
-		for i := 0; i < 10; i++ {
-			fmt.Println("awe")
-		}
-	}()
+	go Soundclouderizer()
 	<-musicSessionTimer.C
-	videoSessionTimer := time.NewTimer(time.Second * 1)
+	videoSessionTimer := time.NewTimer(r.cycleLength)
 
-	go func() {
-		for i := 0; i < 10; i++ {
-			p("cat videos")
-		}
-
-	}()
+	go catVideos()
 	<-videoSessionTimer.C
-	sleepSessionTimer := time.NewTimer(time.Second * 1)
+	sleepSessionTimer := time.NewTimer(r.cycleLength)
 
-	go func() {
-		for i := 0; i < 10; i++ {
-			p("ZZZZzzzZZ")
-		}
-
-	}()
+	go snoring()
 	<-sleepSessionTimer.C
 	p("done")
 }
