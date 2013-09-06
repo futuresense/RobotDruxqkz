@@ -13,52 +13,57 @@ import (
 
 type Robot struct {
 	Name           string
-	Musical_tastes string
+	Musical_taste  string
 	Startup_phrase string
 }
 
 var (
-	quirky = &Robot{Name: "Diggity Dan", Musical_tastes: "Rock, Opera, Blues"}
+	quirky = Robot{Name: "default", Musical_taste: "rock"}
 )
 
 //Check robotpreferences.json exists
 
-func init() {
-
-	filebyte, err := ioutil.ReadFile("robotpreferences.json")
-	if err != nil {
-		fmt.Println("Hold on, need to do some setup to use this Robot.")
-		checkForEditor()
-		decideRobotPersonality()
-	}
+func getRobotPrefs() {
+	checkForPrefsFile()
 	var r Robot
 	json.Unmarshal(filebyte, &r)
-	fmt.Printf("Name: %s \nMusical Tastes: %s", r.Name, r.Musical_tastes)
+	// create file, populate JSON ARRAY
+	//b, _ := json.Marshal(quirky)
+	//os.File.Write(b)
+
+	fmt.Printf("Name: %s \nMusical Tastes: %s", r.Name, r.Musical_taste)
 }
 
-func decideRobotPersonality() {
-	fmt.Println(`"(*&(*&()*&@()&*@()*&@()*&@()&*@(MAGICAWESOMEPOWER))))"`)
-
+func setRobotPrefs() {
+	var editorPath string = checkForEditor()
+	subl := exec.Command(editorPath, "./robotpreferences.json")
+	subl.Start()
 }
 
-func checkForPrefsFile() {
-
-	f, _ := os.Create("./robotpreferences.json")
-	defer f.Close()
-	r := Robot{"Bob", "Rock", "Hi there"}
-	b, _ := json.Marshal(r)
-
-}
-func checkForEditor() {
-	subl, err := exec.LookPath("subl")
+func checkForPrefsFile() bool {
+	filebyte, err := ioutil.ReadFile("robotpreferences.json")
 	if err != nil {
-		fmt.Println("Please symlink sublime text to command line, \"subl\", then restart this program. %s", subl)
+		f, _ := os.Create("./robotpreferences.json")
+		defer f.Close()
 	}
+}
+func checkForEditor() string {
+	//HACK
+	path, err := exec.LookPath("subl")
 
-	fmt.Println(b)
+	if err != nil {
+		path, err = exec.LookPath("EDITOR")
+		fmt.Println("Please SET EDITOR global variable. This can be done on the command line. \"subl\", then restart this program. %s", path)
+	}
+	fmt.Println("editor: ", path)
+	return path
 
 }
 func getLocalSongsAndProcess() {
 	//Todo
 
+}
+
+func robotCycle() {
+	//youtubeDlPlaylist := exec.Command(youtube-dl-playlist, ...)
 }

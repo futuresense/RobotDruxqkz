@@ -23,7 +23,7 @@ func main() {
 			ShortName: "p",
 			Usage:     "Show your robot preferences",
 			Action: func(c *cli.Context) {
-				init()
+				getRobotPrefs()
 			},
 		},
 		{
@@ -31,7 +31,7 @@ func main() {
 			ShortName: "e",
 			Usage:     "Edit your robot preferences",
 			Action: func(c *cli.Context) {
-				init()
+				setRobotPrefs()
 			},
 		},
 		{
@@ -39,21 +39,37 @@ func main() {
 			ShortName: "h",
 			Usage:     "Help at your service.",
 			Action: func(c *cli.Context) {
-				println("Help can be found at http://dankspliff.com")
+				println("Help can be found at http://dankspliff.herokuapp.com")
 			},
 		},
 		{
-			Name:      "talk",
+			Name:      "cycling",
+			ShortName: "c",
+			Usage:     "Put the Robot in Cycling mode. 8 hrs sleeping, 8 hrs music and surfing, 8hrs trolling and reading.",
+			Action: func(c *cli.Context) {
+				robotCycle()
+			},
+		},
+		{
+			Name:      "trolling",
 			ShortName: "t",
 			Usage:     "Definitely not polite dinner conversation.",
+			Action: func(c *cli.Context) {
+				trolling()
+			},
+		},
+		{
+			Name:      "surfing",
+			ShortName: "s",
+			Usage:     "Surfing the Web.",
 			Action: func(c *cli.Context) {
 				talk.Init()
 			},
 		},
 		{
-			Name:      "play",
-			ShortName: "p",
-			Usage:     "play the music style requested.",
+			Name:      "music",
+			ShortName: "m",
+			Usage:     "Listening to Tunes.",
 			Action: func(c *cli.Context) {
 				println("completed task: ", c.Args()[0])
 			},
