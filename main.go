@@ -1,7 +1,6 @@
 package main
 
 import (
-	//	"fmt"
 	"github.com/codegangsta/cli"
 	//"github.com/futuresense/druxqkz/reddit""
 	"github.com/futuresense/RobotDruxqkz/talk"
@@ -23,6 +22,7 @@ func main() {
 			ShortName: "p",
 			Usage:     "Show your robot preferences",
 			Action: func(c *cli.Context) {
+				checkForPrefsFile()
 				getRobotPrefs()
 			},
 		},
@@ -31,6 +31,7 @@ func main() {
 			ShortName: "e",
 			Usage:     "Edit your robot preferences",
 			Action: func(c *cli.Context) {
+				checkForPrefsFile()
 				setRobotPrefs()
 			},
 		},
@@ -77,8 +78,7 @@ func main() {
 	}
 	app.Run(os.Args)
 }
-
-func init() { //fmt.println("on")
+func init() {
 }
 
 // helper functions

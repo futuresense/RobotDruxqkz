@@ -3,12 +3,16 @@ package main
 import (
 	//	"bufio"
 	"encoding/json"
-
 	"fmt"
 	"io/ioutil"
+	"time"
 	//	"log"
-	"os"
+	//	"os"
 	"os/exec"
+)
+
+var (
+	quirky = Robot{Name: "default", Musical_taste: "rock", Startup_phrase: "I love life"}
 )
 
 type Robot struct {
@@ -17,36 +21,33 @@ type Robot struct {
 	Startup_phrase string
 }
 
-var (
-	quirky = Robot{Name: "default", Musical_taste: "rock"}
-)
-
-//Check robotpreferences.json exists
-
 func getRobotPrefs() {
-	checkForPrefsFile()
-	var r Robot
+	r := new(Robot)
+	filebyte, _ := ioutil.ReadFile("robotpreferences.json")
 	json.Unmarshal(filebyte, &r)
-	// create file, populate JSON ARRAY
-	//b, _ := json.Marshal(quirky)
-	//os.File.Write(b)
-
-	fmt.Printf("Name: %s \nMusical Tastes: %s", r.Name, r.Musical_taste)
 }
 
 func setRobotPrefs() {
 	var editorPath string = checkForEditor()
-	subl := exec.Command(editorPath, "./robotpreferences.json")
-	subl.Start()
+	editor := exec.Command(editorPath, "./robotpreferences.json")
+	editor.Start()
 }
 
-func checkForPrefsFile() bool {
+//Check robotpreferences.json exists
+func checkForPrefsFile() {
 	filebyte, err := ioutil.ReadFile("robotpreferences.json")
 	if err != nil {
-		f, _ := os.Create("./robotpreferences.json")
-		defer f.Close()
+		//fill with default's
+		data, _ := json.Marshal(quirky)
+		fmt.Println(data)
+		ioutil.WriteFile("robotpreferences.json", data, 774)
+
 	}
+	var r Robot
+	json.Unmarshal(filebyte, &r)
+	fmt.Printf("Name: %s \nMusical Tastes: %s", r.Name, r.Musical_taste)
 }
+
 func checkForEditor() string {
 	//HACK
 	path, err := exec.LookPath("subl")
@@ -59,11 +60,8 @@ func checkForEditor() string {
 	return path
 
 }
-func getLocalSongsAndProcess() {
-	//Todo
-
-}
-
 func robotCycle() {
+	p := fmt.Println
+	p(time.Now())
 	//youtubeDlPlaylist := exec.Command(youtube-dl-playlist, ...)
 }
