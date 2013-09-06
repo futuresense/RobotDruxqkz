@@ -62,6 +62,9 @@ func checkForEditor() string {
 }
 func robotCycle() {
 	p := fmt.Println
-	p(time.Now())
+	sessionLength := time.NewTimer(time.Minute * 5)
+	go func() {
+p("hs")		
+	}
 	//youtubeDlPlaylist := exec.Command(youtube-dl-playlist, ...)
 }
