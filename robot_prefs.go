@@ -10,8 +10,9 @@ import (
 	//	"os"
 	"os/exec"
 )
-	var r &Robot = new(Robot)
+
 var (
+	r      = new(Robot)
 	quirky = Robot{Name: "default", Musical_taste: "rock", Startup_phrase: "I love life"}
 )
 
@@ -19,13 +20,10 @@ type Robot struct {
 	Name           string
 	Musical_taste  string
 	Startup_phrase string
-	Sleep_time     int32
-	Music_time     int32
-	VIdeo_time     int32
-	CycleLength    int
+	Cycle_length   int
 }
 
-func getRobotPrefs() {
+func (r *Robot) getRobotPrefs() {
 
 	filebyte, _ := ioutil.ReadFile("robotpreferences.json")
 	json.Unmarshal(filebyte, &r)
@@ -66,15 +64,15 @@ func checkForEditor() string {
 }
 func robotCycle() {
 	p := fmt.Println
-	musicSessionTimer := time.NewTimer(r.cycleLength)
+	musicSessionTimer := time.NewTimer(time.Minute * 2)
 
-	go Soundclouderizer()
+	go surfing()
 	<-musicSessionTimer.C
-	videoSessionTimer := time.NewTimer(r.cycleLength)
+	videoSessionTimer := time.NewTimer(time.Minute * 2)
 
-	go catVideos()
+	go trolling()
 	<-videoSessionTimer.C
-	sleepSessionTimer := time.NewTimer(r.cycleLength)
+	sleepSessionTimer := time.NewTimer(time.Minute * 2)
 
 	go snoring()
 	<-sleepSessionTimer.C

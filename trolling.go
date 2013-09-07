@@ -1,5 +1,5 @@
 package main
 
 func trolling() {
-	//TODO
+	p("haha") //TODO
 }

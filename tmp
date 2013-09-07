@@ -1,6 +1,0 @@
-
-	j := map[string]string{"name": inputString}
-	fmt.Println("Robot musical tastes:")
-	readIn, _, _ = r.ReadLine()
-	inputString = string(readIn)
-	j["musical_tastes"] = inputString

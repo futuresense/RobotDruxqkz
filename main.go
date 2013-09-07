@@ -3,12 +3,13 @@ package main
 import (
 	"github.com/codegangsta/cli"
 	//"github.com/futuresense/druxqkz/reddit""
-	"github.com/futuresense/RobotDruxqkz/talk"
+	"fmt"
 	"os"
 )
 
 var (
 	on bool = false
+	p       = fmt.Println
 )
 
 func main() {
@@ -23,7 +24,7 @@ func main() {
 			Usage:     "Show your robot preferences",
 			Action: func(c *cli.Context) {
 				checkForPrefsFile()
-				getRobotPrefs()
+				//Robot.getRobotPrefs()
 			},
 		},
 		{
@@ -64,15 +65,15 @@ func main() {
 			ShortName: "s",
 			Usage:     "Surfing the Web.",
 			Action: func(c *cli.Context) {
-				talk.Init()
+				surfing()
 			},
 		},
 		{
-			Name:      "music",
-			ShortName: "m",
+			Name:      "resting",
+			ShortName: "r",
 			Usage:     "Listening to Tunes.",
 			Action: func(c *cli.Context) {
-				println("completed task: ", c.Args()[0])
+				snoring()
 			},
 		},
 	}
