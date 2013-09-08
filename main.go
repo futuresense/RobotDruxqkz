@@ -65,7 +65,7 @@ func main() {
 			ShortName: "s",
 			Usage:     "Surfing the Web.",
 			Action: func(c *cli.Context) {
-				surfing()
+				surfing(getTag())
 			},
 		},
 		{
@@ -80,14 +80,4 @@ func main() {
 	app.Run(os.Args)
 }
 func init() {
-}
-
-// helper functions
-func onSwitch() bool {
-	if on {
-		on = false
-	} else {
-		on = true
-	}
-	return on
 }

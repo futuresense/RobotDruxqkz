@@ -66,7 +66,7 @@ func robotCycle() {
 	p := fmt.Println
 	musicSessionTimer := time.NewTimer(time.Minute * 2)
 
-	go surfing()
+	go surfing("-r0NfT1e4DM")
 	<-musicSessionTimer.C
 	videoSessionTimer := time.NewTimer(time.Minute * 2)
 
