@@ -4,6 +4,74 @@
 		"selected_items":
 		[
 			[
+				"Sea",
+				"SearchResults	[]*SearchResult ʈ"
+			],
+			[
+				"su",
+				"SurfingStuff	struct ʈ"
+			],
+			[
+				"tag",
+				"TagSize	 ν"
+			],
+			[
+				"exec",
+				"execErr	error ν"
+			],
+			[
+				"ex",
+				"execErr	error ν"
+			],
+			[
+				"spri",
+				"Sprintf	string ƒ"
+			],
+			[
+				"scr",
+				"scriptBytes	[]byte ν"
+			],
+			[
+				"scrp",
+				"scriptexe	*exec.Cmd ν"
+			],
+			[
+				"st",
+				"StdoutPipe	io.ReadCloser, error ƒ"
+			],
+			[
+				"script",
+				"scriptexe	*exec.Cmd ν"
+			],
+			[
+				"scrip",
+				"scriptexe	*exec.Cmd ν"
+			],
+			[
+				"input",
+				"inputString	string ν"
+			],
+			[
+				"std",
+				"StdinPipe	io.WriteCloser, error ƒ"
+			],
+			[
+				"cmd",
+				"cmdOut	[]byte ν"
+			],
+			[
+				"cm",
+				"cmdOut	io.ReadCloser ν"
+			],
+			[
+				"stdin",
+				"StdinPipe	io.WriteCloser, error ƒ"
+			],
+			[
+				"e",
+				"Environ	[]string ƒ"
+			],
+			[
 				"checkfor",
 				"checkForPrefsFile	bool ƒ"
 			],
@@ -84,10 +152,6 @@
 				"ParseInt	i int64, err error ƒ"
 			],
 			[
-				"input",
-				"inputString	string ν"
-			],
-			[
 				"Rea",
 				"ReadLine	line []byte, isPrefix bool, err error ƒ"
 			],
@@ -111,11 +175,75 @@
 	},
 	"buffers":
 	[
+		{
+			"contents": "package main\n\nimport (\n    \"os/exec\"   \n    \"os\"\n    \"fmt\"\n    \"io\"\n\n)\n\nvar prog string = \"/path/to/my/child/program\"\n\nfunc main() {\n    for {\n        cmd := exec.Command(prog)\n        stdout, err := cmd.StdoutPipe()\n        if err != nil {\n            fmt.Println(err)\n        }\n        stderr, err := cmd.StderrPipe()\n        if err != nil {\n            fmt.Println(err)\n        }\n        err = cmd.Start()\n        if err != nil {\n            fmt.Println(err)\n        }\n        go io.Copy(os.Stdout, stdout) \n        go io.Copy(os.Stderr, stderr) \n        cmd.Wait()\n    }\n}",
+			"settings":
+			{
+				"buffer_size": 576,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/users/timothybone/code/go/src/github.com/futuresense/RobotDruxqkz/robot_prefs.go",
+			"settings":
+			{
+				"buffer_size": 1704,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/users/timothybone/code/go/src/github.com/futuresense/RobotDruxqkz/main.go",
+			"settings":
+			{
+				"buffer_size": 2098,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/users/timothybone/code/go/src/github.com/futuresense/RobotDruxqkz/soundcloud/soundcloud.go",
+			"settings":
+			{
+				"buffer_size": 5947,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/users/timothybone/code/go/src/github.com/futuresense/RobotDruxqkz/audio.go",
+			"settings":
+			{
+				"buffer_size": 1037,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/users/timothybone/code/go/src/github.com/futuresense/RobotDruxqkz/surfing.go",
+			"settings":
+			{
+				"buffer_size": 2704,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/timothybone/.config/fish/config.fish",
+			"settings":
+			{
+				"buffer_size": 2393,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/timothybone/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+			"settings":
+			{
+				"buffer_size": 533,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "Packages/GoSublime/GoSublime.sublime-build",
 	"command_palette":
 	{
-		"height": 109.0,
+		"height": 249.0,
 		"selected_items":
 		[
 			[
@@ -185,14 +313,28 @@
 	"distraction_free":
 	{
 		"menu_visible": true,
-		"show_minimap": false,
+		"show_minimap": true,
 		"show_open_files": false,
-		"show_tabs": false,
+		"show_tabs": true,
 		"side_bar_visible": false,
 		"status_bar_visible": false
 	},
 	"file_history":
 	[
+		"/users/timothybone/code/go/src/github.com/futuresense/RobotDruxqkz/ferret/ferret.go",
+		"/users/timothybone/code/go/src/github.com/futuresense/RobotDruxqkz/robot_prefs.go",
+		"/users/timothybone/code/go/src/github.com/futuresense/RobotDruxqkz/robotpreferences.json",
+		"/users/timothybone/code/go/src/github.com/futuresense/RobotDruxqkz/surfing.go",
+		"/users/timothybone/code/go/src/github.com/futuresense/RobotDruxqkz/main.go",
+		"/users/timothybone/code/go/src/github.com/futuresense/RobotDruxqkz/soundcloud/soundcloud.go",
+		"/users/timothybone/code/go/src/github.com/futuresense/RobotDruxqkz/surfing/surfing.go",
+		"/users/timothybone/code/go/src/github.com/futuresense/RobotDruxqkz/gocrawl/surfing.go",
+		"/users/timothybone/code/go/src/github.com/futuresense/RobotDruxqkz/surfing/urlcontext.go",
+		"/users/timothybone/code/go/src/github.com/futuresense/RobotDruxqkz/trolling.go",
+		"/users/timothybone/code/go/src/github.com/futuresense/RobotDruxqkz/sleeping.go",
+		"/users/timothybone/code/go/src/github.com/futuresense/RobotDruxqkz/audio.go",
+		"/Users/timothybone/Library/Application Support/Sublime Text 3/Packages/User/GoSublime.sublime-settings",
+		"/users/timothybone/code/go/src/github.com/futuresense/RobotDruxqkz/robotdruxqz.sublime-project",
 		"/Users/timothybone/code/go/src/github.com/futuresense/RobotDruxqkz/robotdruxqz.sublime-project",
 		"/Users/timothybone/code/go/src/github.com/futuresense/RobotDruxqkz/main.go",
 		"/Users/timothybone/code/go/src/github.com/futuresense/RobotDruxqkz/ferret/ferret.go",
@@ -306,21 +448,7 @@
 		"/Users/timothybone/sites/festielove/client/.gitignore",
 		"/Users/timothybone/sites/festielove/client/src/app/myAPI/myAPI.js",
 		"/Users/timothybone/sites/festielove/client/src/myAPI.html",
-		"/Users/timothybone/sites/festielove/client/src/gate.html",
-		"/Users/timothybone/sites/festielove/client/src/common/security/login/LoginFormController.js",
-		"/Users/timothybone/sites/festielove/lib/myApi/index.js",
-		"/Users/timothybone/sites/festielove/lib/security/index.js",
-		"/Users/timothybone/sites/festielove/client/src/app/login/index.tpl.html",
-		"/Users/timothybone/sites/festielove/client/src/common/security/login/toolbar.js",
-		"/Users/timothybone/sites/festielove/client/test/unit/common/security/login/login-toolbar.spec.js",
-		"/Users/timothybone/sites/festielove/client/gruntFile.js",
-		"/Users/timothybone/sites/festielove/client/gruntFile.coffee",
-		"/Users/timothybone/sites/festielove/server.js",
-		"/Users/timothybone/sites/festielove/client/vendor/bootstrap/breadcrumbs.less",
-		"/Users/timothybone/sites/festielove/db/linkspam-api/index.js",
-		"/Users/timothybone/sites/festielove/lib/gate/index.js",
-		"/Users/timothybone/sites/festielove/lib/user/index.js",
-		"/Users/timothybone/sites/festielove/lib/type/index.js"
+		"/Users/timothybone/sites/festielove/client/src/gate.html"
 	],
 	"find":
 	{
@@ -339,6 +467,19 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"username",
+			"user",
+			"path,",
+			"path",
+			"make",
+			"id",
+			"make",
+			"surl",
+			"tag",
+			"x",
+			"surfing",
+			"goquery",
+			"rxOk",
 			"save",
 			"new",
 			"process",
@@ -453,20 +594,7 @@
 			"C",
 			"ffmpeg",
 			"[]",
-			"func",
-			"os.new",
-			"os.ne",
-			"checkerr",
-			"loop",
-			"flag",
-			"net/http",
-			"cookie",
-			"cookiejar",
-			"sql",
-			"localhost",
-			"ser",
-			"dburl",
-			"mongolab_uri"
+			"func"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -484,13 +612,325 @@
 	"groups":
 	[
 		{
+			"selected": 6,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 576,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								68,
+								68
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/GoSublime/syntax/GoSublime-Go.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/users/timothybone/code/go/src/github.com/futuresense/RobotDruxqkz/robot_prefs.go",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1704,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"history_list_is_closing": true,
+							"syntax": "Packages/GoSublime/syntax/GoSublime-Go.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 667.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/users/timothybone/code/go/src/github.com/futuresense/RobotDruxqkz/main.go",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2098,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/GoSublime/syntax/GoSublime-Go.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1212.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/users/timothybone/code/go/src/github.com/futuresense/RobotDruxqkz/soundcloud/soundcloud.go",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5947,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1610,
+								1612
+							]
+						],
+						"settings":
+						{
+							"highlight_size": 0,
+							"history_list_is_closing": true,
+							"syntax": "Packages/GoSublime/syntax/GoSublime-Go.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 969.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "/users/timothybone/code/go/src/github.com/futuresense/RobotDruxqkz/audio.go",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1037,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/GoSublime/syntax/GoSublime-Go.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "/users/timothybone/code/go/src/github.com/futuresense/RobotDruxqkz/surfing.go",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2704,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/GoSublime/syntax/GoSublime-Go.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "/Users/timothybone/.config/fish/config.fish",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2393,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2393,
+								2393
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 270.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/users/timothybone/code/go/src/github.com/futuresense/RobotDruxqkz/main.go",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2098,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/GoSublime/syntax/GoSublime-Go.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 855.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
 			]
 		},
 		{
+			"selected": 1,
 			"sheets":
 			[
+				{
+					"buffer": 2,
+					"file": "/users/timothybone/code/go/src/github.com/futuresense/RobotDruxqkz/main.go",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2098,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/GoSublime/syntax/GoSublime-Go.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 963.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/users/timothybone/code/go/src/github.com/futuresense/RobotDruxqkz/soundcloud/soundcloud.go",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5947,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								990,
+								990
+							]
+						],
+						"settings":
+						{
+							"highlight_size": 0,
+							"history_list_is_closing": true,
+							"syntax": "Packages/GoSublime/syntax/GoSublime-Go.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 844.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "/Users/timothybone/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 533,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								363,
+								363
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -522,7 +962,7 @@
 		"cols":
 		[
 			0.0,
-			0.436904761905,
+			0.5,
 			1.0
 		],
 		"rows":
@@ -544,10 +984,22 @@
 	{
 		"height": 240.0
 	},
+	"output.9o:///users/timothybone/code/go/src/github.com/futuresense/RobotDruxqkz":
+	{
+		"height": 249.0
+	},
+	"output.9o:///users/timothybone/code/go/src/github.com/futuresense/RobotDruxqkz/gocrawl":
+	{
+		"height": 236.0
+	},
+	"output.9o:///users/timothybone/code/go/src/github.com/futuresense/RobotDruxqkz/surfing":
+	{
+		"height": 124.0
+	},
 	"project": "robotdruxqz.sublime-project",
 	"replace":
 	{
-		"height": 50.0
+		"height": 64.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -556,15 +1008,63 @@
 		"selected_items":
 		[
 			[
+				"sou",
+				"soundcloud/soundcloud.go"
+			],
+			[
+				"main",
+				"main.go"
+			],
+			[
+				"robo",
+				"robot_prefs.go"
+			],
+			[
+				"robotpr",
+				"robotpreferences.json"
+			],
+			[
+				"surfin",
+				"surfing.go"
+			],
+			[
+				"main.go",
+				"main.go"
+			],
+			[
+				"robot",
+				"robot_prefs.go"
+			],
+			[
+				"robotp",
+				"robot_prefs.go"
+			],
+			[
+				"url",
+				"surfing/urlcontext.go"
+			],
+			[
+				"surf",
+				"surfing.go"
+			],
+			[
+				"troll",
+				"trolling.go"
+			],
+			[
+				"slee",
+				"sleeping.go"
+			],
+			[
+				"au",
+				"audio.go"
+			],
+			[
 				".proj",
 				"robotdruxqz.sublime-project"
 			],
 			[
 				"ma",
-				"main.go"
-			],
-			[
-				"main",
 				"main.go"
 			],
 			[
@@ -588,28 +1088,12 @@
 				"reddit/reddit.go"
 			],
 			[
-				"sou",
-				"soundcloud/soundcloud.go"
-			],
-			[
-				"troll",
-				"trolling.go"
-			],
-			[
 				"alk",
 				"talk/talk.go"
 			],
 			[
 				"read",
 				"README.md"
-			],
-			[
-				"robo",
-				"robotpreferences.json"
-			],
-			[
-				"robot",
-				"robot_prefs.go"
 			],
 			[
 				"sa",
@@ -1034,38 +1518,6 @@
 			[
 				"myapi",
 				"lib/myApi/index.js"
-			],
-			[
-				"app/app.js",
-				"client/src/app/app.js"
-			],
-			[
-				"client/dist/myapi",
-				"client/dist/myAPI.html"
-			],
-			[
-				"damni",
-				"client/src/app/damnit.tpl.html"
-			],
-			[
-				"damnit.tpl.",
-				"client/src/damnit.tpl.html"
-			],
-			[
-				"awesome.",
-				"client/src/app/awesome.tpl.html"
-			],
-			[
-				"dist/app",
-				"client/dist/templates/app.js"
-			],
-			[
-				"tpl",
-				"client/src/app/header.tpl.html"
-			],
-			[
-				"tpl.",
-				"client/src/app/awesome.tpl.html"
 			]
 		],
 		"width": 0.0

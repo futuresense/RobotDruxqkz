@@ -1,27 +1,58 @@
 package main
 
 import (
+	//	"fmt"
 	"github.com/PuerkitoBio/gocrawl"
 	"github.com/PuerkitoBio/goquery"
 	"net/http"
+	"os"
 	"os/exec"
 	"regexp"
+	"syscall"
 	"time"
 )
 
 // Only enqueue the root and paths beginning with an "a"
 var (
-	rxOk = regexp.MustCompile(`http://duckduckgo\.com(/a.*)?$`)
+	isUser   = true
+	isOnline = false
+	rxOk     = regexp.MustCompile(`http://duckduckgo\.com(/a.*)?$`)
+	sr       = SearchResult{}
 )
 
-func surfing(tag string) {
+type SurfingStuff struct {
+	Tag      string
+	Priority int16
+}
+
+type SearchResult struct {
+	Title []string
+	Tag   string
+}
+
+type SearchResults []*SearchResult
+
+func (s SearchResults) Len() int      { return len(s) }
+func (s SearchResults) Swap(i, j int) { s[i], s[j] = s[j], s[i] }
+
+func surfing() {
 	p("surfing")
-	script, err := exec.LookPath("youtube-dl")
+	binary, err := exec.LookPath("youtube-dl")
 	if err != nil {
 		p("no youtube-dl, please install this python script")
 	}
-	scriptexe := exec.Command("bash -c cd music && " + script + " -x " + tag)
-	scriptexe.Start()
+
+	env := os.Environ()
+	args := []string{"youtube-dl", "-x", sr.Tag}
+	execErr := syscall.Exec(binary, args, env)
+	if execErr != nil {
+		panic(execErr)
+	}
+
+	for _, tag := range sr.Tag {
+		p(tag)
+	}
+
 }
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -47,7 +78,7 @@ func (this *ExampleExtender) Filter(ctx *gocrawl.URLContext, isVisited bool) boo
 	return !isVisited && rxOk.MatchString(ctx.NormalizedURL().String())
 }
 
-func ExampleCrawl() {
+func SurfingCrawler() {
 	// Set custom options
 	opts := gocrawl.NewOptions(new(ExampleExtender))
 	opts.CrawlDelay = 1 * time.Second
@@ -58,13 +89,22 @@ func ExampleCrawl() {
 
 	// Create crawler and start at root of duckduckgo
 	c := gocrawl.NewCrawlerWithOptions(opts)
-	c.Run("https://duckduckgo.com/")
+	c.Run("https://www.youtube.com/results?search_query=" + getArtistILike())
 
 	// Remove "x" before Output: to activate the example (will run on go test)
 
 	// xOutput: voluntarily fail to see log output
 }
 
-func getTag() string {
-	return "-r0NfT1e4DM"
+func getArtistILike() string {
+	var a []string
+	if isUser && isOnline {
+		a := []string{}
+	} else if isUser && !isOnline {
+		//hack, readin file here
+		a := []string{"shlohmo", "bjork", "sadf"}
+	} else {
+		a := []string{}
+	}
+	return a[0]
 }

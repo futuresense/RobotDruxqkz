@@ -3,6 +3,9 @@ package main
 import (
 	"github.com/codegangsta/cli"
 	//"github.com/futuresense/druxqkz/reddit""
+	"github.com/benmanns/goworker"
+
+	"bufio"
 	"fmt"
 	"os"
 )
@@ -15,7 +18,7 @@ var (
 func main() {
 	app := cli.NewApp()
 	app.Name = "Robot Druxqkz\n"
-	app.Usage = "This robot, while probably drunk, and mostly just a lazy web surfing monkey, reading reddit, watching movies, chillin to great music.. Is actually just about the coolest Robot ever...."
+	app.Usage = "This robot, while probably drunk, and mostly just a lazy web surfing monkey, reading reddit, watching movies, chillin to great music.. Is actually just about the coolest Robot ever....Press Q to quit or X to exit at anytime."
 	app.Version = "0.1.awesome"
 	app.Commands = []cli.Command{
 		{
@@ -65,7 +68,7 @@ func main() {
 			ShortName: "s",
 			Usage:     "Surfing the Web.",
 			Action: func(c *cli.Context) {
-				surfing(getTag())
+				surfing()
 			},
 		},
 		{
@@ -78,6 +81,35 @@ func main() {
 		},
 	}
 	app.Run(os.Args)
+	if err := goworker.Work(); err != nil {
+		fmt.Println("Error", err)
+	}
+
 }
+
+func worker() {
+	goworker.Register("myClass", myWorker)
+}
+
+func myWorker(queue string, args ...interface{}) error {
+	fmt.Printf("From %s, %v", queue, args)
+	return
+}
+
 func init() {
+	go func() {
+
+		r := bufio.NewReader(os.Stdin)
+		var inputString string
+		//always watch for ESC
+		for {
+
+			inputBytes, _, _ := r.ReadLine()
+			inputString = string(inputBytes)
+			if (inputString == "x") || (inputString == "q") {
+				os.Exit(0)
+			}
+		}
+
+	}()
 }
