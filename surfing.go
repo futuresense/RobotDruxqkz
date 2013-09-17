@@ -1,14 +1,11 @@
 package main
 
 import (
-	//	"fmt"
+	"fmt"
 	"github.com/PuerkitoBio/gocrawl"
 	"github.com/PuerkitoBio/goquery"
 	"net/http"
-	"os"
-	"os/exec"
 	"regexp"
-	"syscall"
 	"time"
 )
 
@@ -41,26 +38,6 @@ type SearchResults []*SearchResult
 func (s SearchResults) Len() int      { return len(s) }
 func (s SearchResults) Swap(i, j int) { s[i], s[j] = s[j], s[i] }
 
-func surfing() {
-	p("surfing")
-	binary, err := exec.LookPath("youtube-dl")
-	if err != nil {
-		p("no youtube-dl, please install this python script")
-	}
-
-	env := os.Environ()
-	args := []string{"youtube-dl", "-x", sr.Tag}
-	execErr := syscall.Exec(binary, args, env)
-	if execErr != nil {
-		panic(execErr)
-	}
-
-	for _, tag := range sr.Tag {
-		p(tag)
-	}
-
-}
-
 ////////////////////////////////////////////////////////////////////////////////////
 // WEB CRAWLER
 ////////////////////////////////////////////////////////////////////////////////////
@@ -85,7 +62,6 @@ func (this *ExampleExtender) Filter(ctx *gocrawl.URLContext, isVisited bool) boo
 }
 
 func SurfingCrawler() {
-
 	// Set custom options
 	opts := gocrawl.NewOptions(new(ExampleExtender))
 	opts.CrawlDelay = 1 * time.Second
@@ -104,28 +80,28 @@ func SurfingCrawler() {
 	// xOutput: voluntarily fail to see log output
 }
 func urlAddress() string {
+	var URLFragments = []string{"/search?q=same"}
+	var urlAddress = ""
 	URLHome := "http://www.google.com/"
-	var URLFragment = []string{"/search?q=same"}
-	var URLFragments string
-	for _, v := range URLFragment {
-		URLFragments += v
+	for _, v := range URLFragments {
+		urlAddress += v
+		urlAddress = fmt.Sprint(URLHome, URLFragments)
 	}
-	var fullURL = URLFragments + URLHome
-	return fullURL
+	return urlAddress
+
 }
 func searchYoutube() {
 }
 
-/*
 func getArtistILike() string {
 	var a []string
 	if isUser && isOnline {
-		a := []string{}
+		a = []string{}
 	} else if isUser && !isOnline {
 		//hack, readin file here
-		a := []string{"shlohmo", "bjork", "sadf"}
+		a = []string{"shlohmo", "bjork", "sadf"}
 	} else {
-		a := []string{}
+		a = []string{}
 	}
 	return a[0]
-}*/
+}

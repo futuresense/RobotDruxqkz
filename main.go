@@ -11,12 +11,17 @@ import (
 )
 
 var (
-	r  Robot
+	rp robotPreferences
+	ra robotActivities
 	on bool = false
 	p       = fmt.Println
 )
 
 func main() {
+	if err := goworker.Work(); err != nil {
+		fmt.Println("Error", err)
+	}
+
 	app := cli.NewApp()
 	app.Name = "Robot Druxqkz\n"
 	app.Usage = "This robot, while probably drunk, and mostly just a lazy web surfing monkey, reading reddit, watching movies, chillin to great music.. Is actually just about the coolest Robot ever....Press Q to quit or X to exit at anytime."
@@ -27,7 +32,7 @@ func main() {
 			ShortName: "p",
 			Usage:     "Show your robot preferences",
 			Action: func(c *cli.Context) {
-				r.showPrefs()
+				rp.showPrefs()
 				//Robot.getRobotPrefs()
 			},
 		},
@@ -36,7 +41,7 @@ func main() {
 			ShortName: "e",
 			Usage:     "Edit your robot preferences",
 			Action: func(c *cli.Context) {
-				r.showPrefs()
+				rp.showPrefs()
 			},
 		},
 		{
@@ -52,7 +57,7 @@ func main() {
 			ShortName: "c",
 			Usage:     "Put the Robot in Cycling mode. 8 hrs sleeping, 8 hrs music and surfing, 8hrs trolling and reading.",
 			Action: func(c *cli.Context) {
-				r.robotCycle()
+				ra.robotCycle()
 			},
 		},
 		{
@@ -60,7 +65,7 @@ func main() {
 			ShortName: "t",
 			Usage:     "Definitely not polite dinner conversation.",
 			Action: func(c *cli.Context) {
-				trolling()
+				ra.trolling()
 			},
 		},
 		{
@@ -68,7 +73,7 @@ func main() {
 			ShortName: "s",
 			Usage:     "Surfing the Web.",
 			Action: func(c *cli.Context) {
-				surfing()
+				ra.surfing()
 			},
 		},
 		{
@@ -76,18 +81,18 @@ func main() {
 			ShortName: "r",
 			Usage:     "Listening to Tunes.",
 			Action: func(c *cli.Context) {
-				snoring()
 			},
 		},
 	}
 	app.Run(os.Args)
-	if err := goworker.Work(); err != nil {
-		fmt.Println("Error", err)
-	}
 
 }
 
 func init() {
+	p("clikkk")
+	turnOnTheRobot()
+	goworker.Register("awesome", dumbFunc)
+
 	go func() {
 
 		r := bufio.NewReader(os.Stdin)
@@ -103,4 +108,9 @@ func init() {
 		}
 
 	}()
+}
+func dumbFunc(queue string, args ...interface{}) error {
+	fmt.Printf("From %s, %v", queue, args)
+
+	return nil
 }

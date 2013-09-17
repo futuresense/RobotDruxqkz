@@ -5,7 +5,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
-	"time"
 	//	"log"
 	//	"os"
 	"os/exec"
@@ -14,19 +13,19 @@ import (
 var ()
 
 type Robot interface {
+}
+
+type robotPreferences interface {
 	initRobot()
-	setRobotPrefs()
+	setPrefs()
 	showPrefs()
 	robotCycle()
 }
 
 type RobotStatistics struct {
-	Cycle_state    int
-	Name           string
-	Musical_taste  string
-	Startup_phrase string
-	Cycle_length   int
-	Tag_history    []string
+	Cycle_state  int
+	Cycle_length int
+	Tag_history  []string
 }
 
 func (r *RobotStatistics) showPrefs() {
@@ -55,7 +54,7 @@ func checkForPrefsFile() {
 		ioutil.WriteFile("robotpreferences.json", data, 774)
 
 	}
-	json.Unmarshal(filebyte, &r)
+	json.Unmarshal(filebyte, &rp)
 }
 
 //helper function
@@ -70,24 +69,4 @@ func checkForEditor() string {
 	fmt.Println("editor: ", path)
 	return path
 
-}
-func (r *RobotStatistics) robotCycle() {
-	p := fmt.Println
-	go func() {
-
-		musicSessionTimer := time.NewTimer(time.Minute * 2)
-
-		go surfing()
-		<-musicSessionTimer.C
-		videoSessionTimer := time.NewTimer(time.Minute * 2)
-
-		go trolling()
-		<-videoSessionTimer.C
-		sleepSessionTimer := time.NewTimer(time.Minute * 2)
-
-		go snoring()
-		<-sleepSessionTimer.C
-		p("done")
-
-	}()
 }
