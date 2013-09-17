@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fmt"
+	//	"fmt"
 	"github.com/PuerkitoBio/gocrawl"
 	"github.com/PuerkitoBio/goquery"
 	"net/http"
@@ -85,10 +85,7 @@ func (this *ExampleExtender) Filter(ctx *gocrawl.URLContext, isVisited bool) boo
 }
 
 func SurfingCrawler() {
-	var robot Robot
 
-	var scs SurfingCrawlerStuff
-	var s = new(SurferSettings)
 	// Set custom options
 	opts := gocrawl.NewOptions(new(ExampleExtender))
 	opts.CrawlDelay = 1 * time.Second
@@ -99,9 +96,6 @@ func SurfingCrawler() {
 
 	// Create crawler and start at root of duckduckgo
 	c := gocrawl.NewCrawlerWithOptions(opts)
-	var fullUrl string
-	var URLFragment string
-	var urlFragments []byte
 
 	c.Run(urlAddress())
 
@@ -114,14 +108,15 @@ func urlAddress() string {
 	var URLFragment = []string{"/search?q=same"}
 	var URLFragments string
 	for _, v := range URLFragment {
-
-		URLFragments = fmt.Sprint(URLHome, URLFragment)
+		URLFragments += v
 	}
-
+	var fullURL = URLFragments + URLHome
+	return fullURL
 }
 func searchYoutube() {
 }
 
+/*
 func getArtistILike() string {
 	var a []string
 	if isUser && isOnline {
@@ -133,4 +128,4 @@ func getArtistILike() string {
 		a := []string{}
 	}
 	return a[0]
-}
+}*/

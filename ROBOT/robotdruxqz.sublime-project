@@ -1,0 +1,14 @@
+{
+	"folders":
+	[
+		{
+			"follow_symlinks": true,
+			"path": "/users/timothybone/code/go/src/github.com/futuresense/RobotDruxqkz"
+		}
+	],
+	"on_save": [
+		{
+			"cmd": "go build"
+		}
+	]
+}

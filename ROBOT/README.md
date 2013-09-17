@@ -1,0 +1,3 @@
+Requires some software to function. This robot takes advantage of scripts already written to actuate its desires. The author of the Robot took no great pains rewriting code that works, and instead takes advantage of Go's abilities to run other languages. 
+
+The Robot browses reddit for fun, and later for inspiration to kill the boredom, and later he meets up with the Owner of the Robot, a hopefully benevolent humanoid...
