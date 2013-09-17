@@ -1,7 +1,7 @@
 package main
 
 import (
-	//	"fmt"
+	"fmt"
 	"github.com/PuerkitoBio/gocrawl"
 	"github.com/PuerkitoBio/goquery"
 	"net/http"
@@ -20,7 +20,7 @@ var (
 	sr       = SearchResult{}
 )
 
-type SurfingStuff struct {
+type SurfingCrawlerStuff struct {
 	Tag      string
 	Priority int16
 }
@@ -28,6 +28,12 @@ type SurfingStuff struct {
 type SearchResult struct {
 	Title []string
 	Tag   string
+}
+type SurferSettings struct {
+}
+
+type URLBuild struct {
+	Full_url string
 }
 
 type SearchResults []*SearchResult
@@ -79,6 +85,10 @@ func (this *ExampleExtender) Filter(ctx *gocrawl.URLContext, isVisited bool) boo
 }
 
 func SurfingCrawler() {
+	var robot Robot
+
+	var scs SurfingCrawlerStuff
+	var s = new(SurferSettings)
 	// Set custom options
 	opts := gocrawl.NewOptions(new(ExampleExtender))
 	opts.CrawlDelay = 1 * time.Second
@@ -89,11 +99,27 @@ func SurfingCrawler() {
 
 	// Create crawler and start at root of duckduckgo
 	c := gocrawl.NewCrawlerWithOptions(opts)
-	c.Run("https://www.youtube.com/results?search_query=" + getArtistILike())
+	var fullUrl string
+	var URLFragment string
+	var urlFragments []byte
+
+	c.Run(urlAddress())
 
 	// Remove "x" before Output: to activate the example (will run on go test)
 
 	// xOutput: voluntarily fail to see log output
+}
+func urlAddress() string {
+	URLHome := "http://www.google.com/"
+	var URLFragment = []string{"/search?q=same"}
+	var URLFragments string
+	for _, v := range URLFragment {
+
+		URLFragments = fmt.Sprint(URLHome, URLFragment)
+	}
+
+}
+func searchYoutube() {
 }
 
 func getArtistILike() string {

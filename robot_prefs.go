@@ -11,12 +11,17 @@ import (
 	"os/exec"
 )
 
-var (
-	r      = new(Robot)
-	quirky = Robot{Name: "default", Musical_taste: "rock", Startup_phrase: "I love life"}
-)
+var ()
 
-type Robot struct {
+type Robot interface {
+	initRobot()
+	setRobotPrefs()
+	showPrefs()
+	robotCycle()
+}
+
+type RobotStatistics struct {
+	Cycle_state    int
 	Name           string
 	Musical_taste  string
 	Startup_phrase string
@@ -24,13 +29,17 @@ type Robot struct {
 	Tag_history    []string
 }
 
-func (r *Robot) getRobotPrefs() {
-
-	filebyte, _ := ioutil.ReadFile("robotpreferences.json")
-	json.Unmarshal(filebyte, &r)
+func (r *RobotStatistics) showPrefs() {
+	p("doh")
 }
 
-func setRobotPrefs() {
+func (r *RobotStatistics) initRobot() {
+	filebyte, _ := ioutil.ReadFile("robotpreferences.json")
+	json.Unmarshal(filebyte, &r)
+	return
+}
+
+func (r *RobotStatistics) setPrefs() {
 	var editorPath string = checkForEditor()
 	editor := exec.Command(editorPath, "./robotpreferences.json")
 	editor.Start()
@@ -41,16 +50,15 @@ func checkForPrefsFile() {
 	filebyte, err := ioutil.ReadFile("robotpreferences.json")
 	if err != nil {
 		//fill with default's
-		data, _ := json.Marshal(quirky)
+		data, _ := json.Marshal("quirky")
 		fmt.Println(data)
 		ioutil.WriteFile("robotpreferences.json", data, 774)
 
 	}
-	var r Robot
 	json.Unmarshal(filebyte, &r)
-	fmt.Printf("Name: %s \nMusical Tastes: %s", r.Name, r.Musical_taste)
 }
 
+//helper function
 func checkForEditor() string {
 	//HACK
 	path, err := exec.LookPath("subl")
@@ -63,7 +71,7 @@ func checkForEditor() string {
 	return path
 
 }
-func robotCycle() {
+func (r *RobotStatistics) robotCycle() {
 	p := fmt.Println
 	go func() {
 

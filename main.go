@@ -11,6 +11,7 @@ import (
 )
 
 var (
+	r  Robot
 	on bool = false
 	p       = fmt.Println
 )
@@ -26,7 +27,7 @@ func main() {
 			ShortName: "p",
 			Usage:     "Show your robot preferences",
 			Action: func(c *cli.Context) {
-				checkForPrefsFile()
+				r.showPrefs()
 				//Robot.getRobotPrefs()
 			},
 		},
@@ -35,8 +36,7 @@ func main() {
 			ShortName: "e",
 			Usage:     "Edit your robot preferences",
 			Action: func(c *cli.Context) {
-				checkForPrefsFile()
-				setRobotPrefs()
+				r.showPrefs()
 			},
 		},
 		{
@@ -52,7 +52,7 @@ func main() {
 			ShortName: "c",
 			Usage:     "Put the Robot in Cycling mode. 8 hrs sleeping, 8 hrs music and surfing, 8hrs trolling and reading.",
 			Action: func(c *cli.Context) {
-				robotCycle()
+				r.robotCycle()
 			},
 		},
 		{
@@ -85,15 +85,6 @@ func main() {
 		fmt.Println("Error", err)
 	}
 
-}
-
-func worker() {
-	goworker.Register("myClass", myWorker)
-}
-
-func myWorker(queue string, args ...interface{}) error {
-	fmt.Printf("From %s, %v", queue, args)
-	return
 }
 
 func init() {
