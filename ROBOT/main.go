@@ -88,7 +88,7 @@ func main() {
 }
 
 func init() {
-	coverArt()
+	ra.coverArt()
 	go func() {
 
 		r := bufio.NewReader(os.Stdin)

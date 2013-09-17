@@ -4,6 +4,7 @@ type robotAction interface {
 	trolling()
 	surfing()
 	chilling()
+	coverArt()
 }
 
 type RobotActivities struct {
