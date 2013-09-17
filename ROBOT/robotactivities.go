@@ -8,9 +8,13 @@ type robotAction interface {
 }
 
 type RobotActivities struct {
-	Activity_level int
+	Sneakometer    int64
+	Clumsoclock    int64
+	Activity_level int64
+	P/*reciseotron*/ int64
 }
 
 func (r *RobotActivities) trolling() {
-	p("haha") //TODO
+	r.P = 17
+	r.Activity_level = r.P + r.Sneakometer
 }
