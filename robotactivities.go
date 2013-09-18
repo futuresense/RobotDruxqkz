@@ -1,4 +1,4 @@
-package main
+package robotdruxqkz
 
 import (
 	"fmt"
@@ -13,7 +13,6 @@ type robotActivities interface {
 	trolling()
 	surfing()
 	chilling()
-	robotCycle()
 }
 
 type RobotAction struct {
@@ -33,7 +32,7 @@ func (r *RobotAction) coverArt() {
 	r.Activity_level = r.P + r.Sneakometer
 }
 
-func (r *RobotAction) robotCycle() {
+func cycleMode() {
 	p := fmt.Println
 	go func() {
 

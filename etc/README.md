@@ -1,0 +1,1 @@
+Requires some software to function. This robot takes advantage of scripts already written to actuate its desires. The author of the Robot took no great pains rewriting code that works, and instead takes advantage of Go's abilities to run other languages. 

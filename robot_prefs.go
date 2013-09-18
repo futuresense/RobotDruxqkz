@@ -1,4 +1,4 @@
-package main
+package robotdruxqkz
 
 import (
 	//	"bufio"
@@ -11,9 +11,6 @@ import (
 )
 
 var ()
-
-type Robot interface {
-}
 
 type robotPreferences interface {
 	initRobot()

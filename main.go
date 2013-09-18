@@ -1,4 +1,4 @@
-package main
+package robotdruxqkz
 
 import (
 	"github.com/codegangsta/cli"
@@ -57,7 +57,8 @@ func main() {
 			ShortName: "c",
 			Usage:     "Put the Robot in Cycling mode. 8 hrs sleeping, 8 hrs music and surfing, 8hrs trolling and reading.",
 			Action: func(c *cli.Context) {
-				ra.robotCycle()
+				//ra.robotCycle()
+				turnOnTheRobot()
 			},
 		},
 		{
@@ -89,9 +90,7 @@ func main() {
 }
 
 func init() {
-	p("clikkk")
-	turnOnTheRobot()
-	goworker.Register("awesome", dumbFunc)
+	//goworker.Register("awesome", dumbFunc)
 
 	go func() {
 
@@ -109,8 +108,7 @@ func init() {
 
 	}()
 }
-func dumbFunc(queue string, args ...interface{}) error {
-	fmt.Printf("From %s, %v", queue, args)
 
-	return nil
+func flowPrinter() {
+	//print where in the program is operating.oo
 }
