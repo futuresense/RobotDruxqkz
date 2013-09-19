@@ -2,10 +2,10 @@ package robotdruxqkz
 
 import (
 	"bytes"
-	"encoding/json"
-	"fmt"
+	//	"encoding/json"
+	//"fmt"
 	"github.com/argusdusty/Ferret"
-	si "github.com/bitly/go-simplejson"
+	//sj "github.com/bitly/go-simplejson"
 	"github.com/stathat/jconfig"
 	"io/ioutil"
 	"strconv"
@@ -20,8 +20,10 @@ var (
 	rb  robotBrain
 )
 
-type Robot struct {
-	name string
+type robot struct {
+	name          string
+	isBored       bool
+	isInitialized bool
 }
 type robotMusic interface {
 }
@@ -35,27 +37,37 @@ type robotBrain interface {
 
 type robotThoughts struct {
 	music [][]byte
-	basic []byte
+	basic [][]byte
 	crazy string
 }
 
-func turnOnTheRobot() {
+type RobotThought struct {
+	thought *robotThoughts
+}
 
-	config := jconfig.LoadConfig("/robot/robot.conf")
-
-	if data, ok := js.Get("about").CheckGet("i_like"); ok {
-		fmt.Println(data)
-	}
-	if ok {
-		p("yay")
-	}
-	cycleMode()
+//main thread
+func thoughtPool(c chan string, r *robotThoughts) {
 
 }
 
-func (r *robotThoughts) question(a robotThoughts) *robotThoughts {
-	robot := &Robot{}
-	p("What is", robot.name)
+func turnOnTheRobot() {
+	//robot config file
+	z := robot{isBored: true, isInitialized: true}
+	x := robotThoughts{}
+	config := jconfig.LoadConfig("/robot/robot.conf")
+	if config.GetString("environment") == "production" {
+		continue
+		// ...
+	}
+	thoughts := make(chan string)
+
+	go thoughtPool(thoughts, &x)
+	go cycleMode()
+
+}
+
+func (r *robotThoughts) question(a string) *robotThoughts {
+	p("What is", a)
 	Data, err := ioutil.ReadFile("dictionary.dat")
 	if err != nil {
 		panic(err)
@@ -78,7 +90,7 @@ func (r *robotThoughts) question(a robotThoughts) *robotThoughts {
 	QuestionSearchEngine := ferret.New(Words, Words, Values, Converter)
 	var qse = QuestionSearchEngine
 
-	p(qse.Query(robot.name, 4))
+	p(qse.Query(a, 4))
 	r.crazy = "woahhh"
 
 	return r

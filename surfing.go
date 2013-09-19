@@ -79,17 +79,7 @@ func SurfingCrawler() {
 
 	// xOutput: voluntarily fail to see log output
 }
-func urlAddress() string {
-	var URLFragments = []string{"/search?q=same"}
-	var urlAddress = ""
-	URLHome := "http://www.google.com/"
-	for _, v := range URLFragments {
-		urlAddress += v
-		urlAddress = fmt.Sprint(URLHome, URLFragments)
-	}
-	return urlAddress
 
-}
 func searchYoutube() {
 }
 

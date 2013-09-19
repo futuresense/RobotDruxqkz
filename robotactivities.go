@@ -1,10 +1,10 @@
 package robotdruxqkz
 
 import (
-	"fmt"
+	//"fmt"
 	"os"
 	"os/exec"
-
+	//	"github.com/futuresense/linkerator"
 	"syscall"
 	"time"
 )
@@ -16,24 +16,21 @@ type robotActivities interface {
 }
 
 type RobotAction struct {
-	Sneakometer    int64
+	Sneakometer    interface{}
 	Clumsoclock    int64
 	Activity_level int64
 	P/*reciseotron*/ int64
 }
 
 func (r *RobotAction) trolling() {
-	r.P = 17
-	r.Activity_level = r.P + r.Sneakometer
+	//todo
 }
 
 func (r *RobotAction) coverArt() {
-	r.P = 17
-	r.Activity_level = r.P + r.Sneakometer
+	//
 }
 
-func cycleMode() {
-	p := fmt.Println
+func cycle() {
 	go func() {
 
 		musicSessionTimer := time.NewTimer(time.Minute * 2)
@@ -50,22 +47,49 @@ func cycleMode() {
 	}()
 }
 
+type SurfingRequest chan struct{}
+
 func (r *RobotAction) surfing() {
-	p("surfing")
-	binary, err := exec.LookPath("youtube-dl")
-	if err != nil {
-		p("no youtube-dl, please install this python script")
+	go func() {
+		for {
+			responseChan := make(SurfingRequest)
+		}
 	}
-
-	env := os.Environ()
-	args := []string{"youtube-dl", "-x", sr.Tag}
-	execErr := syscall.Exec(binary, args, env)
-	if execErr != nil {
-		panic(execErr)
-	}
-
+	//check for scripts
+	var scripts = make
 	for _, tag := range sr.Tag {
+		args := []string{"youtube-dl", "-x", sr.Tag}
+		execErr := syscall.Exec(binary, args, env)
+		if execErr != nil {
+			panic(execErr)
+		}
 		p(tag)
 	}
 
+}
+
+func surfingInit() {
+	title := make[]
+	scripts := make([][]string, 3)
+for i := 0; i < count; i++ {
+	scripts[i]
+}
+	
+	env := os.Environ()
+		ydl, err := exec.LookPath(script)
+
+		if err != nil {
+			p("no, please install this python script", script)
+		}
+}
+
+twoD := make([][]int, 3)
+    for i := 0; i < 3; i++ {
+        innerLen := i + 1
+        twoD[i] = make([]int, innerLen)
+        for j := 0; j < innerLen; j++ {
+            twoD[i][j] = i + j
+        }
+    }
+    fmt.Println("2d: ", twoD)
 }

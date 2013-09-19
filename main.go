@@ -2,6 +2,7 @@ package robotdruxqkz
 
 import (
 	"github.com/codegangsta/cli"
+	//"github.com/futuresense/linkerator"
 	//"github.com/futuresense/druxqkz/reddit""
 	"github.com/benmanns/goworker"
 
@@ -111,4 +112,16 @@ func init() {
 
 func flowPrinter() {
 	//print where in the program is operating.oo
+}
+
+func urlAddress() string {
+	var URLFragments = []string{"/search?q=same"}
+	var urlAddress = ""
+	URLHome := "http://www.google.com/"
+	for _, v := range URLFragments {
+		urlAddress += v
+		urlAddress = fmt.Sprint(URLHome, URLFragments)
+	}
+	return urlAddress
+
 }
