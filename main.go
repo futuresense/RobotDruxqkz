@@ -91,6 +91,7 @@ func main() {
 }
 
 func init() {
+	turnOnTheRobot()
 	//goworker.Register("awesome", dumbFunc)
 
 	go func() {
@@ -104,24 +105,15 @@ func init() {
 			inputString = string(inputBytes)
 			if (inputString == "x") || (inputString == "q") {
 				os.Exit(0)
+			} else if inputString == "u" {
+				inputBytes, _, _ := r.ReadLine()
+				fmt.Printf("%v", inputBytes)
 			}
 		}
 
 	}()
 }
 
-func flowPrinter() {
-	//print where in the program is operating.oo
-}
-
-func urlAddress() string {
-	var URLFragments = []string{"/search?q=same"}
-	var urlAddress = ""
-	URLHome := "http://www.google.com/"
-	for _, v := range URLFragments {
-		urlAddress += v
-		urlAddress = fmt.Sprint(URLHome, URLFragments)
-	}
-	return urlAddress
-
+func coverArt() {
+	//
 }

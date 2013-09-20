@@ -10,7 +10,7 @@ import (
 )
 
 type robotActivities interface {
-	trolling()
+	troll()
 	surfing()
 	chilling()
 }
@@ -22,15 +22,11 @@ type RobotAction struct {
 	P/*reciseotron*/ int64
 }
 
-func (r *RobotAction) trolling() {
+func (r *RobotAction) troll() {
 	//todo
 }
 
-func (r *RobotAction) coverArt() {
-	//
-}
-
-func cycle() {
+func Question([]string) {
 	go func() {
 
 		musicSessionTimer := time.NewTimer(time.Minute * 2)
@@ -54,7 +50,7 @@ func (r *RobotAction) surfing() {
 		for {
 			responseChan := make(SurfingRequest)
 		}
-	}
+	}()
 	//check for scripts
 	var scripts = make
 	for _, tag := range sr.Tag {
@@ -68,28 +64,16 @@ func (r *RobotAction) surfing() {
 
 }
 
-func surfingInit() {
-	title := make[]
+func init() {
 	scripts := make([][]string, 3)
-for i := 0; i < count; i++ {
-	scripts[i]
-}
-	
+	for i := 0; i < count; i++ {
+		scripts[i]
+	}
+
 	env := os.Environ()
-		ydl, err := exec.LookPath(script)
+	ydl, err := exec.LookPath(script)
 
-		if err != nil {
-			p("no, please install this python script", script)
-		}
-}
-
-twoD := make([][]int, 3)
-    for i := 0; i < 3; i++ {
-        innerLen := i + 1
-        twoD[i] = make([]int, innerLen)
-        for j := 0; j < innerLen; j++ {
-            twoD[i][j] = i + j
-        }
-    }
-    fmt.Println("2d: ", twoD)
+	if err != nil {
+		p("no, please install this python script", script)
+	}
 }

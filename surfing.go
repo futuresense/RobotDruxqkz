@@ -29,6 +29,29 @@ type SearchResult struct {
 type SurferSettings struct {
 }
 
+type SubscriptionRequest chan 
+	
+	var TickerSubscriptionChan chan Request
+}
+
+func Ticker() {
+	go func() {
+		tick := 0
+		var subscriptions []SubscriptionRequest
+		for {
+			select {
+				case request := <- TickerSubscriptionChan;
+					subscriptions = append(subscriptions, request)
+				default:
+					for _, subscription := range subscriptions {
+						subscription <- tick
+					}
+					tick++
+			}
+		}
+	}()
+}
+
 type URLBuild struct {
 	Full_url string
 }
@@ -61,7 +84,7 @@ func (this *ExampleExtender) Filter(ctx *gocrawl.URLContext, isVisited bool) boo
 	return !isVisited && rxOk.MatchString(ctx.NormalizedURL().String())
 }
 
-func SurfingCrawler() {
+func Surfer() {
 	// Set custom options
 	opts := gocrawl.NewOptions(new(ExampleExtender))
 	opts.CrawlDelay = 1 * time.Second
@@ -80,7 +103,7 @@ func SurfingCrawler() {
 	// xOutput: voluntarily fail to see log output
 }
 
-func searchYoutube() {
+func Crawler() {
 }
 
 func getArtistILike() string {
